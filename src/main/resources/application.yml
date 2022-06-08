@@ -1,0 +1,39 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: spring-boot-config-server
+    
+  profiles:
+    active: local
+    group:
+      local: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+    
+  security:
+    user:
+      name: admin
+      password: admin
+      
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///C:/workspace/spring-cloud-config-repo
+          #search-paths: '{application}'
+          skip-ssl-validation: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
